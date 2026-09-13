@@ -7,10 +7,8 @@
   "repository": "https://github.com/ihabkhaled/i-have-headache",
   "license": "MIT",
   "keywords": ["concise", "brevity", "productivity", "prompt"],
+  "logo": "./assets/logo.png",
   "commands": "./commands",
-  "interface": {
-    "developerName": "IHAB KHALED FOUAD WAHBA",
-    "logo": "./assets/logo.png",
-    "composerIcon": "./assets/composer-icon.png"
-  }
+  "rules": "./.cursor/rules",
+  "skills": "./skills"
 }

@@ -42,6 +42,11 @@ loss.
 
 ## Revisit when
 
-The command body grows past roughly one screen, gains a third platform, or a
-drift incident actually occurs. Any of those flips the arithmetic toward
+The command body grows past roughly one screen, gains a third *file* to sync,
+or a drift incident actually occurs. Any of those flips the arithmetic toward
 Option A.
+
+Cursor was added later and did **not** trigger this: it shares
+`commands/` with Claude Code, so the file count is unchanged. See
+[ADR-0004](ADR-0004-cursor-shares-the-command-directory.md). What matters is
+files to sync, not platforms supported.

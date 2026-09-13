@@ -1,5 +1,5 @@
 # i-have-headache
-I have a headache. One-command Claude Code and OpenAI Codex skill that stops AI from being talkative, chatty, loquacious, verbose, long-winded, garrulous, wordy, a blabbermouth, motor-mouth, or chatterbox. Run /i-have-headache for concise, direct, summarized responses.
+I have a headache. One-command Claude Code, Cursor and OpenAI Codex plugin that stops AI from being talkative, chatty, loquacious, verbose, long-winded, garrulous, wordy, a blabbermouth, motor-mouth, or chatterbox. Run /i-have-headache for concise, direct, summarized responses.
 
 
 ## Install
@@ -10,6 +10,11 @@ I have a headache. One-command Claude Code and OpenAI Codex skill that stops AI 
 /plugin marketplace add ihabkhaled/i-have-headache
 /plugin install i-have-headache
 ```
+
+**Cursor**
+
+Install from the Cursor marketplace, or clone the repo and point Cursor at
+it — the manifest is `.cursor-plugin/plugin.json`.
 
 **OpenAI Codex**
 
@@ -32,11 +37,16 @@ detail explicitly when you want it back.
 | Path | Platform |
 |---|---|
 | `.claude-plugin/plugin.json` | Claude Code manifest |
-| `commands/i-have-headache.md` | Claude Code command |
+| `commands/i-have-headache.md` | Claude Code + Cursor command |
+| `.cursor-plugin/plugin.json` | Cursor manifest |
 | `.codex/prompts/i-have-headache.md` | Codex prompt (same text, no frontmatter) |
 
 Keep the two command bodies in sync. The Codex copy is the Claude one with the
-YAML frontmatter stripped.
+YAML frontmatter stripped. Cursor shares the Claude file, so three platforms
+need only two files.
+
+The logo is generated, not hand-drawn — edit `assets/make_logo.py` and re-run
+it rather than editing the PNGs.
 
 ## Why
 
@@ -71,3 +81,5 @@ constraint is the product.
 
 Editing the command text touches two files that must stay identical. Follow
 [skills/sync-command-bodies](skills/sync-command-bodies/SKILL.md).
+
+MIT licensed. See [LICENSE](LICENSE).

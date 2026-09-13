@@ -9,5 +9,6 @@ Three rules that matter before you read anything else:
    answer, always.
 2. Exactly one user-facing command exists, `/i-have-headache`. Never add a
    second command, alias, flag or mode.
-3. Editing the command text touches two files that must stay identical. Follow
+3. Editing the command text touches two files that must stay identical — Cursor
+   shares the Claude Code one. Follow
    [skills/sync-command-bodies](skills/sync-command-bodies/SKILL.md).

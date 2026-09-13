@@ -18,7 +18,7 @@ while working on it has misunderstood the codebase.
 
 ## What this repository is
 
-A one-command plugin for Claude Code and OpenAI Codex. Invoking
+A one-command plugin for Claude Code, OpenAI Codex and Cursor. Invoking
 `/i-have-headache` switches the assistant into concise mode for the session.
 
 ## The hard constraint
@@ -36,10 +36,12 @@ Adding docs, rules or skills is fine — none of those are commands.
 
 | Path | Purpose |
 |---|---|
-| `commands/i-have-headache.md` | Claude Code command body (source of truth) |
+| `commands/i-have-headache.md` | Command body — source of truth, shared by Claude Code and Cursor |
 | `.codex/prompts/i-have-headache.md` | Codex prompt — same text, frontmatter stripped |
 | `.claude-plugin/plugin.json` | Claude Code plugin manifest |
 | `.claude-plugin/marketplace.json` | Makes the repo its own marketplace |
+| `.cursor-plugin/plugin.json` | Cursor plugin manifest |
+| `assets/` | Logo and composer icon, plus the script that draws them |
 | `.ai/` | Knowledge layer — logic, decisions, rules, context |
 | `skills/` | Repeatable procedures |
 

@@ -7,15 +7,17 @@ description: Use when editing the text of the /i-have-headache command, or when 
 
 Two files carry the same prompt. They must stay identical below the frontmatter.
 
-| File | Frontmatter |
-|---|---|
-| `commands/i-have-headache.md` | yes — source of truth |
-| `.codex/prompts/i-have-headache.md` | no |
+| File | Frontmatter | Read by |
+|---|---|---|
+| `commands/i-have-headache.md` | yes — source of truth | Claude Code, Cursor |
+| `.codex/prompts/i-have-headache.md` | no | Codex |
+
+Cursor shares the first file, so there are three platforms but only two files.
 
 ## When to use
 
 - Changing the wording of the `/i-have-headache` command.
-- Claude Code and Codex behave differently after the same command.
+- Claude Code, Cursor or Codex behave differently after the same command.
 - Reviewing any diff that touches either file.
 
 ## When not to use
@@ -49,6 +51,9 @@ Two files carry the same prompt. They must stay identical below the frontmatter.
 
 - [ ] The `diff` in step 3 is empty.
 - [ ] The Codex file has no YAML frontmatter — Codex renders it as literal text.
+- [ ] The Claude/Cursor file still has both `name:` and `description:` in its
+      frontmatter. Cursor resolves the command from `name:`; dropping it breaks
+      Cursor silently.
 - [ ] Neither file was renamed; the filename is the command name on both
       platforms.
 - [ ] Both files are in the same commit.

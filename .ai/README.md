@@ -16,6 +16,7 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 | [0001](decisions/ADR-0001-agents-md-canonical.md) | AGENTS.md canonical, other agent files are pointers |
 | [0002](decisions/ADR-0002-one-command-only.md) | Exactly one user-facing command, permanently |
 | [0003](decisions/ADR-0003-duplicate-command-body.md) | Duplicate the command body rather than generate it |
+| [0004](decisions/ADR-0004-cursor-shares-the-command-directory.md) | Cursor reuses `commands/` instead of getting a copy |
 
 ## Rules
 

@@ -1,4 +1,5 @@
 ---
+name: i-have-headache
 description: Be concise. Shortest complete answer, nothing more.
 ---
 

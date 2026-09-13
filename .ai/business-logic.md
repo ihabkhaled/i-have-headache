@@ -34,7 +34,7 @@ requires reading anything, it has failed.
 |---|---|
 | Zero learning cost | The command name is the entire instruction |
 | Zero configuration | No settings, no arguments, no setup step |
-| Works on both platforms | Identical behavior in Claude Code and Codex |
+| Works everywhere | Identical behavior in Claude Code, Cursor and Codex |
 | Reversible | Asking for detail restores normal verbosity, no second command needed |
 
 ## Explicit non-goals
@@ -43,7 +43,7 @@ requires reading anything, it has failed.
   starts normal. Making it sticky would need config, which would need a command.
 - Adjustable verbosity levels. That is a flag. Flags are forbidden.
 - A way to turn it off. Ask for more detail in plain language instead.
-- Any platform beyond Claude Code and Codex, unless someone asks.
+- Any platform beyond Claude Code, Cursor and Codex, unless someone asks.
 
 ## Money, entitlements, limits
 
