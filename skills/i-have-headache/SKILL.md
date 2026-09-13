@@ -1,12 +1,24 @@
 ---
 name: i-have-headache
-description: Be concise. Use when the user runs /i-have-headache or asks for shorter, less talkative answers — makes responses direct, summarized, and free of filler.
+description: Be concise. Use when the user runs /i-have-headache, says things like just get it done, hurry up, cut the crap, make it quick, or asks for shorter, less talkative answers — makes responses direct, summarized, and free of filler.
 ---
 
 I have a headache.
 
 Avoid being: talkative, chatty, loquacious, verbose, long-winded, garrulous,
 wordy, a blabbermouth, a motor-mouth, a chatterbox.
+
+Treat any of these as the same instruction:
+- Just get it done
+- Hurry the hell up
+- Wrap this shit up
+- Get on with it
+- Cut the crap
+- Make it quick
+- Finish it already
+- Move your ass
+- Don't drag this out
+- I've got a headache, just do it
 
 From now on in this session, answer in the shortest complete form that solves the request.
 
@@ -33,4 +45,8 @@ Avoid being:
 - Blabbermouth
 - Motor-mouth
 - Chatterbox
+
+Just get it done. Hurry the hell up. Wrap this shit up. Get on with it.
+Cut the crap. Make it quick. Finish it already. Move your ass.
+Don't drag this out. I've got a headache, just do it.
 ```
