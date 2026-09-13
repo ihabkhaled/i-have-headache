@@ -1,0 +1,13 @@
+---
+description: Repository-wide agent instructions
+alwaysApply: true
+---
+
+See [AGENTS.md](../../AGENTS.md) — single source of truth for this repository.
+
+1. The maintainer has a headache. Do not talk too much. Give the shortest
+   complete answer that solves the request; expand only when explicitly asked.
+2. Exactly one user-facing command exists: `/i-have-headache`. Never add a
+   second command, alias, flag or mode.
+3. Editing the command text touches two files that must stay identical. Follow
+   [skills/sync-command-bodies](../../skills/sync-command-bodies/SKILL.md).
