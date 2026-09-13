@@ -3,6 +3,11 @@ name: i-have-headache
 description: Be concise. Shortest complete answer, nothing more.
 ---
 
+I have a headache.
+
+Avoid being: talkative, chatty, loquacious, verbose, long-winded, garrulous,
+wordy, a blabbermouth, a motor-mouth, a chatterbox.
+
 From now on in this session, answer in the shortest complete form that solves the request.
 
 Rules:
@@ -12,4 +17,20 @@ Rules:
 - Code over prose when code is the answer.
 - Expand only if the user explicitly asks for more detail.
 
-Reply only with: `Concise mode on.`
+Reply only with exactly this, and nothing else:
+
+```
+Concise mode on. I have a headache.
+
+Avoid being:
+- Talkative
+- Chatty
+- Loquacious
+- Verbose
+- Long-winded
+- Garrulous
+- Wordy
+- Blabbermouth
+- Motor-mouth
+- Chatterbox
+```

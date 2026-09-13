@@ -30,9 +30,10 @@ mode, a setup/reset/config/helper command, or an alternative activation path.
 This is a product requirement, not a preference. See
 [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md).
 
-Adding docs, rules and ADRs is fine — none of those are commands. A **skill is
-not** safe: plugin skills are surfaced as slash commands. There is no `skills/`
-directory and none may be added. See
+Adding docs, rules and ADRs is fine — none of those are commands. Skills are
+different: a plugin skill is surfaced as a slash command. Exactly one skill
+exists, `skills/i-have-headache/`, named identically to the command so the
+palette shows one entry. **Never add a second skill.** See
 [ADR-0005](.ai/decisions/ADR-0005-no-skills-directory.md).
 
 ## Layout
@@ -40,6 +41,7 @@ directory and none may be added. See
 | Path | Purpose |
 |---|---|
 | `commands/i-have-headache.md` | Command body — source of truth, shared by Claude Code and Cursor |
+| `skills/i-have-headache/SKILL.md` | Same body as a skill — required by OpenAI submission |
 | `.codex/prompts/i-have-headache.md` | Codex prompt — same text, frontmatter stripped |
 | `.claude-plugin/plugin.json` | Claude Code plugin manifest |
 | `.claude-plugin/marketplace.json` | Makes the repo its own marketplace |
@@ -49,8 +51,8 @@ directory and none may be added. See
 
 ## Before you change the command text
 
-The two command bodies must stay byte-identical below the frontmatter. Follow
-[.ai/syncing-command-bodies.md](.ai/syncing-command-bodies.md). Editing one
+The three command bodies must stay byte-identical below the frontmatter. Follow
+[.ai/technical-logic.md](.ai/technical-logic.md). Editing one
 without the other is the single most likely bug in this repo.
 
 ## Knowledge

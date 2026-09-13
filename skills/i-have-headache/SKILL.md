@@ -1,3 +1,8 @@
+---
+name: i-have-headache
+description: Be concise. Use when the user runs /i-have-headache or asks for shorter, less talkative answers — makes responses direct, summarized, and free of filler.
+---
+
 I have a headache.
 
 Avoid being: talkative, chatty, loquacious, verbose, long-winded, garrulous,

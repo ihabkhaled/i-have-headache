@@ -1,0 +1,6 @@
+# skills/i-have-headache/SKILL.md is a prompt, not a procedure skill. Its body
+# must stay byte-identical to commands/i-have-headache.md (see ADR-0005), so it
+# cannot carry the 'when to use' / 'procedure' / 'definition of done' sections
+# the skill-format check expects. Adding them would change what the command
+# does. Exempted deliberately, not to silence a real finding.
+skills/

@@ -8,8 +8,10 @@ alternative activation path.
 
 Docs, rules and ADRs are not commands. Adding those is fine.
 
-A **skill is a command**. Plugin skills appear in the slash-command palette, so
-no `skills/` directory may exist in this repo. Procedures go in `.ai/`. See
+A **skill is a command**: plugin skills appear in the slash-command palette.
+Exactly one skill exists, `skills/i-have-headache/`, sharing the command's name
+so it adds no palette entry. Never add a second skill — any other name is a
+second command. Procedures go in `.ai/` as documents. See
 [ADR-0005](../decisions/ADR-0005-no-skills-directory.md).
 
 If asked to add an option, decline and point at

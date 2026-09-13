@@ -1,59 +1,62 @@
-# ADR-0005 — No `skills/` directory; procedures live in `.ai/`
+# ADR-0005 — Exactly one skill, named identically to the command
 
-*Status: accepted — 2026-09-13, superseding part of ADR-0003*
+*Status: accepted — 2026-09-13. Supersedes the original ban on `skills/`.*
 
 ## Context
 
-A `sync-command-bodies` skill was added to hold the one repeatable procedure in
-this repo. Claude Code, Cursor and the OpenAI submission flow all surface a
-plugin's skills as **user-facing slash commands**. The result was two entries in
-the palette:
+A `sync-command-bodies` skill was added first and immediately produced a second
+palette entry, `/i-have-headache:sync-command-bodies`, violating
+[ADR-0002](ADR-0002-one-command-only.md). It was deleted, and this ADR
+originally banned `skills/` outright.
+
+That ban then failed OpenAI submission:
 
 ```
-/i-have-headache:i-have-headache
-/i-have-headache:sync-command-bodies
+Plugin has no valid skills
+Add or fix at least one skill at `skills/<skill>/SKILL.md`
 ```
 
-That directly violates [ADR-0002](ADR-0002-one-command-only.md), the product's
-one hard invariant. The skill was authored as internal documentation; the
-packaging made it a command anyway.
+So the constraint is two-sided: OpenAI requires at least one skill, and the
+product requires exactly one user-facing name.
 
 ## Options
 
-**A. Keep the skill, accept two entries.** Cost: breaks the single hard
-invariant. Not viable.
+**A. Keep the ban, skip OpenAI.** Cost: no ChatGPT/Codex distribution. The
+platform is a target, so this is not viable.
 
-**B. Keep the skill, hide it from packaging.** No manifest key reliably hides a
-skill across all three platforms, and OpenAI's scanner reads the directory
-regardless. Unreliable, and relies on each vendor not changing behavior.
+**B. Add a differently-named skill.** Whatever it is called becomes a second
+palette entry. This is exactly what already broke once.
 
-**C. Delete `skills/`; move the procedure to `.ai/`.** The content survives
-verbatim as a document. Cost: agents no longer get automatic skill-triggering on
-it; they must find it through `AGENTS.md`, which every agent config file already
-points at.
+**C. One skill, named `i-have-headache`** — the same name as the command,
+carrying the same body. Satisfies OpenAI's minimum. Because the name matches,
+the palette shows a single entry.
 
 ## Decision
 
-Option C. `skills/` is deleted. The procedure lives at
-[.ai/syncing-command-bodies.md](../syncing-command-bodies.md).
+Option C. `skills/i-have-headache/SKILL.md` exists and is the **only** permitted
+skill.
 
-**No `skills/` directory may be added to this repository.** In a plugin, a skill
-is a command, and this plugin ships one command.
+The original rule was right about the danger and wrong about the mechanism. The
+invariant is not "no skills" — it is **one user-facing name**. A skill sharing
+that name adds no entry; any other name adds one.
 
 ## Consequences
 
-Good: the palette shows exactly one entry on every platform, which is the
-product requirement.
+Good: OpenAI submission passes and the palette still shows one name.
 
-Bad: the procedure is no longer auto-triggered by a skill description; it is
-reached by reading. Mitigated by every agent config file naming it in their
-three rules.
+Bad: a third file now carries the command body. Sync burden grows from two files
+to three. Covered by
+[.ai/technical-logic.md](../technical-logic.md).
 
-Bad: an obvious future contribution — "let's add a skill for X" — is now
-forbidden and will feel arbitrary without this record.
+Bad: `skills/` existing invites a second skill, which is the original failure. A
+second skill directory is forbidden — the checklist in the sync procedure
+asserts one entry.
+
+Bad: the name collision between command and skill is load-bearing but invisible.
+Renaming either one silently produces two palette entries.
 
 ## Revisit when
 
-A platform offers a genuinely non-user-facing skill or private-instruction slot
-that no command palette lists. Verify on every target platform before reopening,
-not just one.
+OpenAI drops the minimum-one-skill requirement, or a platform starts listing
+same-named commands and skills as two entries. Verify the palette after any
+change here — do not assume.

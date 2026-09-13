@@ -29,9 +29,10 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 
 ## Procedures
 
-Deliberately documents, not skills — a plugin skill is a slash command, and this
-plugin ships one. See [ADR-0005](decisions/ADR-0005-no-skills-directory.md).
-
-| Procedure | Use when |
+| Procedure | Where |
 |---|---|
-| [syncing-command-bodies](syncing-command-bodies.md) | Editing the command text, or platforms behave differently |
+| Editing the command text (three files must stay identical) | [technical-logic.md](technical-logic.md#keeping-the-three-bodies-in-sync) |
+| Regenerating the logo | `python assets/make_logo.py` |
+
+Procedures are documents, not skills. A plugin skill is a slash command, and
+this plugin ships one — see [ADR-0005](decisions/ADR-0005-no-skills-directory.md).

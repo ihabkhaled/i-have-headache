@@ -16,5 +16,6 @@
   ],
   "logo": "./assets/logo.png",
   "commands": "./commands",
-  "rules": "./.cursor/rules"
+  "rules": "./.cursor/rules",
+  "skills": "./skills"
 }

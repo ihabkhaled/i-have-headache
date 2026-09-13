@@ -40,8 +40,10 @@ A `skills/` directory was added and immediately produced a second palette entry,
 skills are surfaced as slash commands by Claude Code, Cursor and the OpenAI
 submission scanner alike.
 
-Never add `skills/` to this repo. Procedures go in `.ai/` as documents. See
-ADR-0005.
+Corrected 2026-09-13: OpenAI submission *requires* at least one skill, so the
+ban was wrong. The real invariant is **one user-facing name**. Exactly one
+skill exists, named `i-have-headache` like the command, which adds no palette
+entry. A differently-named skill would. See ADR-0005.
 
 Reverses when: a platform offers a private, non-palette instruction slot —
 verified on every target platform, not just one.

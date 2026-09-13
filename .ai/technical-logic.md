@@ -17,6 +17,7 @@ run, nothing to install beyond copying files.
 | Platform | Mechanism | File |
 |---|---|---|
 | Claude Code | Plugin command | `commands/i-have-headache.md` |
+| OpenAI / ChatGPT | Plugin skill | `skills/i-have-headache/SKILL.md` |
 | Cursor | Plugin command | `commands/i-have-headache.md` (the same file) |
 | OpenAI Codex | Custom prompt | `.codex/prompts/i-have-headache.md` |
 
@@ -35,7 +36,7 @@ This duplication is deliberate — see
 [ADR-0003](decisions/ADR-0003-duplicate-command-body.md). It is also the repo's
 one real failure mode: edit one, forget the other, and Codex drifts from the
 other two.
-[.ai/syncing-command-bodies.md](syncing-command-bodies.md) exists
+[.ai/technical-logic.md](technical-logic.md) exists
 solely to prevent that.
 
 ## Claude Code packaging
@@ -52,9 +53,9 @@ storefront that lists it.
 ## Cursor packaging
 
 `.cursor-plugin/plugin.json` points `commands` at the shared `./commands`,
-`rules` at `./.cursor/rules`. There is no `skills` key: plugin skills become
-slash commands ([ADR-0005](decisions/ADR-0005-no-skills-directory.md)).
-Cursor's `logo` is a
+`rules` at `./.cursor/rules`, and `skills` at `./skills`. The single skill
+shares the command's name, so it adds no palette entry
+([ADR-0005](decisions/ADR-0005-no-skills-directory.md)). Cursor's `logo` is a
 top-level manifest key; Claude Code's equivalents live under `interface`.
 
 ## Icons
@@ -76,6 +77,34 @@ python assets/make_logo.py
 Codex has no plugin installer. Installation is a file copy into
 `~/.codex/prompts/`. The filename becomes the command name, which is why the
 file must stay named `i-have-headache.md`.
+
+## Keeping the three bodies in sync
+
+`commands/i-have-headache.md` is the source. Edit it, never the other two, then
+regenerate:
+
+```bash
+sed '1{/^---$/!q}; 1,/^---$/d; /./,$!d' commands/i-have-headache.md   > .codex/prompts/i-have-headache.md
+
+{ printf -- '---
+name: i-have-headache
+description: %s
+---
+
+'     "Be concise. Use when the user runs /i-have-headache or asks for shorter, less talkative answers — makes responses direct, summarized, and free of filler."
+  cat .codex/prompts/i-have-headache.md
+} > skills/i-have-headache/SKILL.md
+```
+
+Verify before committing; commit all three together:
+
+```bash
+body() { sed '1{/^---$/!q}; 1,/^---$/d; /./,$!d' "$1"; }
+diff <(body commands/i-have-headache.md) .codex/prompts/i-have-headache.md   && diff <(body commands/i-have-headache.md) <(body skills/i-have-headache/SKILL.md)   && echo "in sync"
+```
+
+All three declare the name `i-have-headache`. Changing any of them creates a
+second palette entry — that is the failure this repo has already hit twice.
 
 ## Why the command replies "Concise mode on."
 
