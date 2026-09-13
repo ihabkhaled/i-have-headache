@@ -1,0 +1,6 @@
+{
+  "name": "i-have-headache",
+  "description": "One command that makes the AI concise, direct, and short.",
+  "version": "1.0.0",
+  "commands": "./commands"
+}
