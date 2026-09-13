@@ -1,0 +1,11 @@
+{
+  "name": "i-have-headache",
+  "owner": { "name": "Ihab Khaled" },
+  "plugins": [
+    {
+      "name": "i-have-headache",
+      "source": "./",
+      "description": "One command that makes the AI concise, direct, and short."
+    }
+  ]
+}
