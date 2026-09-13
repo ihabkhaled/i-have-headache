@@ -2,13 +2,19 @@
   "name": "i-have-headache",
   "description": "One command that makes the AI concise, direct, and short.",
   "version": "1.0.0",
-  "author": { "name": "IHAB KHALED FOUAD WAHBA" },
+  "author": {
+    "name": "IHAB KHALED FOUAD WAHBA"
+  },
   "homepage": "https://github.com/ihabkhaled/i-have-headache",
   "repository": "https://github.com/ihabkhaled/i-have-headache",
   "license": "MIT",
-  "keywords": ["concise", "brevity", "productivity", "prompt"],
+  "keywords": [
+    "concise",
+    "brevity",
+    "productivity",
+    "prompt"
+  ],
   "logo": "./assets/logo.png",
   "commands": "./commands",
-  "rules": "./.cursor/rules",
-  "skills": "./skills"
+  "rules": "./.cursor/rules"
 }

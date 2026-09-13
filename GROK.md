@@ -11,4 +11,4 @@ Three rules that matter before you read anything else:
    second command, alias, flag or mode.
 3. Editing the command text touches two files that must stay identical — Cursor
    shares the Claude Code one. Follow
-   [skills/sync-command-bodies](skills/sync-command-bodies/SKILL.md).
+   [.ai/syncing-command-bodies.md](.ai/syncing-command-bodies.md).

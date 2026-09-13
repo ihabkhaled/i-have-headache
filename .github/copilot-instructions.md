@@ -7,4 +7,4 @@ See [AGENTS.md](../AGENTS.md) — single source of truth for this repository.
 2. Exactly one user-facing command exists, `/i-have-headache`. Never add a
    second.
 3. Editing the command text touches two files that must stay identical. Follow
-   [skills/sync-command-bodies](../skills/sync-command-bodies/SKILL.md).
+   [.ai/syncing-command-bodies.md](../.ai/syncing-command-bodies.md).

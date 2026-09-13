@@ -80,6 +80,6 @@ steps. See [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md) — the
 constraint is the product.
 
 Editing the command text touches two files that must stay identical. Follow
-[skills/sync-command-bodies](skills/sync-command-bodies/SKILL.md).
+[.ai/syncing-command-bodies.md](.ai/syncing-command-bodies.md).
 
 MIT licensed. See [LICENSE](LICENSE).

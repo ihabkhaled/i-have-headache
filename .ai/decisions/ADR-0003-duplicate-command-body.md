@@ -23,7 +23,7 @@ it.
 
 Option B, with the obligation written down in three places: `AGENTS.md`,
 [technical-logic](../technical-logic.md), and a dedicated skill,
-[sync-command-bodies](../../skills/sync-command-bodies/SKILL.md).
+[syncing-command-bodies](../syncing-command-bodies.md).
 
 The body is one screen of prose that changes rarely. Build tooling would be
 permanent overhead against an occasional, low-severity, easily-detected failure.

@@ -35,7 +35,7 @@ This duplication is deliberate — see
 [ADR-0003](decisions/ADR-0003-duplicate-command-body.md). It is also the repo's
 one real failure mode: edit one, forget the other, and Codex drifts from the
 other two.
-[skills/sync-command-bodies](../skills/sync-command-bodies/SKILL.md) exists
+[.ai/syncing-command-bodies.md](syncing-command-bodies.md) exists
 solely to prevent that.
 
 ## Claude Code packaging
@@ -52,7 +52,9 @@ storefront that lists it.
 ## Cursor packaging
 
 `.cursor-plugin/plugin.json` points `commands` at the shared `./commands`,
-`rules` at `./.cursor/rules`, and `skills` at `./skills`. Cursor's `logo` is a
+`rules` at `./.cursor/rules`. There is no `skills` key: plugin skills become
+slash commands ([ADR-0005](decisions/ADR-0005-no-skills-directory.md)).
+Cursor's `logo` is a
 top-level manifest key; Claude Code's equivalents live under `interface`.
 
 ## Icons

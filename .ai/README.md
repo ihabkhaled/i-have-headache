@@ -17,6 +17,7 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 | [0002](decisions/ADR-0002-one-command-only.md) | Exactly one user-facing command, permanently |
 | [0003](decisions/ADR-0003-duplicate-command-body.md) | Duplicate the command body rather than generate it |
 | [0004](decisions/ADR-0004-cursor-shares-the-command-directory.md) | Cursor reuses `commands/` instead of getting a copy |
+| [0005](decisions/ADR-0005-no-skills-directory.md) | No `skills/` directory — a plugin skill is a command |
 
 ## Rules
 
@@ -26,8 +27,11 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 | [one-command-only.md](rules/one-command-only.md) | ADR-0002 |
 | [no-second-source-of-truth.md](rules/no-second-source-of-truth.md) | ADR-0001 |
 
-## Skills
+## Procedures
 
-| Skill | Use when |
+Deliberately documents, not skills — a plugin skill is a slash command, and this
+plugin ships one. See [ADR-0005](decisions/ADR-0005-no-skills-directory.md).
+
+| Procedure | Use when |
 |---|---|
-| [sync-command-bodies](../skills/sync-command-bodies/SKILL.md) | Editing the command text, or platforms behave differently |
+| [syncing-command-bodies](syncing-command-bodies.md) | Editing the command text, or platforms behave differently |

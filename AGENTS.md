@@ -30,7 +30,10 @@ mode, a setup/reset/config/helper command, or an alternative activation path.
 This is a product requirement, not a preference. See
 [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md).
 
-Adding docs, rules or skills is fine — none of those are commands.
+Adding docs, rules and ADRs is fine — none of those are commands. A **skill is
+not** safe: plugin skills are surfaced as slash commands. There is no `skills/`
+directory and none may be added. See
+[ADR-0005](.ai/decisions/ADR-0005-no-skills-directory.md).
 
 ## Layout
 
@@ -43,12 +46,11 @@ Adding docs, rules or skills is fine — none of those are commands.
 | `.cursor-plugin/plugin.json` | Cursor plugin manifest |
 | `assets/` | Logo and composer icon, plus the script that draws them |
 | `.ai/` | Knowledge layer — logic, decisions, rules, context |
-| `skills/` | Repeatable procedures |
 
 ## Before you change the command text
 
 The two command bodies must stay byte-identical below the frontmatter. Follow
-[skills/sync-command-bodies](skills/sync-command-bodies/SKILL.md). Editing one
+[.ai/syncing-command-bodies.md](.ai/syncing-command-bodies.md). Editing one
 without the other is the single most likely bug in this repo.
 
 ## Knowledge

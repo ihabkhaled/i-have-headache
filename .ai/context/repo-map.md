@@ -24,7 +24,7 @@ assets/make_logo.py                draws the artwork
 assets/logo.png                    512x512
 assets/composer-icon.png           256x256
 
-skills/sync-command-bodies/        keeps the two bodies identical
+.ai/syncing-command-bodies.md      keeps the two bodies identical
 
 .ai/business-logic.md              why it exists, what it refuses to do
 .ai/technical-logic.md             how it works, what breaks it
@@ -47,7 +47,8 @@ README.md                          install and use
 | Why does Cursor share `commands/`? | `.ai/decisions/ADR-0004-cursor-shares-the-command-directory.md` |
 | How do I change the logo? | `python assets/make_logo.py` after editing it |
 | Why so many agent files? | `.ai/decisions/ADR-0001-agents-md-canonical.md` |
-| I need to edit the command | `skills/sync-command-bodies/SKILL.md` |
+| I need to edit the command | `.ai/syncing-command-bodies.md` |
+| Can I add a skill? | `.ai/decisions/ADR-0005-no-skills-directory.md` (no) |
 
 ## Change surface
 

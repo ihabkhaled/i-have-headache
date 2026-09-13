@@ -32,3 +32,16 @@ Reverses when: reinstalled from the GitHub source.
 An earlier pass judged a full knowledge layer to be overkill for a four-file
 repo and said so. The maintainer overrode that. Do not re-litigate it or propose
 trimming `.ai/` as cleanup — it is wanted.
+
+## 2026-09-13 — a plugin skill IS a user-facing command
+
+A `skills/` directory was added and immediately produced a second palette entry,
+`/i-have-headache:sync-command-bodies`, breaking the one hard invariant. Plugin
+skills are surfaced as slash commands by Claude Code, Cursor and the OpenAI
+submission scanner alike.
+
+Never add `skills/` to this repo. Procedures go in `.ai/` as documents. See
+ADR-0005.
+
+Reverses when: a platform offers a private, non-palette instruction slot —
+verified on every target platform, not just one.
