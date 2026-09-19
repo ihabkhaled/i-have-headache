@@ -9,6 +9,7 @@ HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 SKILL="$HERE/../skills/i-have-headache/SKILL.md"
 [ -f "$SKILL" ] || exit 0
 awk '
+  { sub(/\r$/, "") }
   NR == 1 && /^---$/ { front = 1; next }
   front && /^---$/ { front = 0; next }
   front { next }

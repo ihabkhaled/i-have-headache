@@ -111,7 +111,7 @@ fi
 # The always-on rules: the skill's body, without its frontmatter and without the
 # acknowledgement meant for an explicit run. The skill stays the only copy.
 rules() {
-  awk 'NR == 1 && /^---$/ { f = 1; next } f && /^---$/ { f = 0; next } f { next }
+  awk '{ sub(/\r$/, "") } NR == 1 && /^---$/ { f = 1; next } f && /^---$/ { f = 0; next } f { next }
        /^Concise mode is always on/ { exit } { print }' "$SRC/skills/$NAME/SKILL.md"
 }
 
