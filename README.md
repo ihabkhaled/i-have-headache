@@ -1,85 +1,75 @@
 # i-have-headache
-I have a headache. One-command Claude Code, Cursor and OpenAI Codex plugin that stops AI from being talkative, chatty, loquacious, verbose, long-winded, garrulous, wordy, a blabbermouth, motor-mouth, or chatterbox. Run /i-have-headache for concise, direct, summarized responses.
-
+I have a headache. A Claude Code, Codex and Cursor plugin that stops AI from being talkative, chatty, loquacious, verbose, long-winded, garrulous, wordy, a blabbermouth, motor-mouth, or chatterbox. **Always on** — concise, direct, summarized responses without typing anything.
 
 ## Install
 
-**Claude Code**
+macOS / Linux:
 
+```bash
+curl -fsSL https://raw.githubusercontent.com/ihabkhaled/i-have-headache/main/install.sh | sh
 ```
-/plugin marketplace add ihabkhaled/i-have-headache
-/plugin install i-have-headache
+
+Windows (PowerShell):
+
+```powershell
+irm https://raw.githubusercontent.com/ihabkhaled/i-have-headache/main/install.ps1 | iex
 ```
 
-**Cursor**
+It installs for every one of Claude Code, Codex and Cursor it finds. Re-run to
+update. Add `--uninstall` (`-Uninstall`) to remove; `--repo PATH` (`-Repo`) to
+install into one project only.
 
-Install from the Cursor marketplace, or clone the repo and point Cursor at
-it — the manifest is `.cursor-plugin/plugin.json`.
+Claude Code without the script:
 
-**OpenAI Codex**
-
+```bash
+claude plugin marketplace add https://github.com/ihabkhaled/i-have-headache.git
+claude plugin install i-have-headache@i-have-headache
 ```
-curl -o ~/.codex/prompts/i-have-headache.md \
-  https://raw.githubusercontent.com/ihabkhaled/i-have-headache/main/.codex/prompts/i-have-headache.md
-```
+
+In the VS Code extension: `/plugins` → Marketplaces → add the URL above → install.
 
 ## Use
 
-```
-/i-have-headache
-```
+Nothing. It is always on. To get detail back for one answer, ask for it.
 
-That is the only command. Concise mode stays on for the session. Ask for more
-detail explicitly when you want it back.
+The one command re-asserts it: `/i-have-headache:i-have-headache` (Claude Code),
+`$i-have-headache` (Codex), `/i-have-headache` (Cursor).
 
-## Layout
+## How
 
-| Path | Platform |
+| Platform | Always on via |
 |---|---|
-| `.claude-plugin/plugin.json` | Claude Code manifest |
-| `commands/i-have-headache.md` | Claude Code + Cursor command |
-| `.cursor-plugin/plugin.json` | Cursor manifest |
-| `.codex/prompts/i-have-headache.md` | Codex prompt (same text, no frontmatter) |
+| Claude Code | SessionStart hook |
+| Codex | a marked block in `~/.codex/AGENTS.md` |
+| Cursor | an `alwaysApply` rule in `~/.cursor/rules/` |
 
-Keep the two command bodies in sync. The Codex copy is the Claude one with the
-YAML frontmatter stripped. Cursor shares the Claude file, so three platforms
-need only two files.
-
-The logo is generated, not hand-drawn — edit `assets/make_logo.py` and re-run
-it rather than editing the PNGs.
+All three are cut from one file, `skills/i-have-headache/SKILL.md`.
 
 ## Why
 
 AI assistants default to verbose: they restate your request, explain what they
 are about to do, do it, then explain what they did. When you have a headache,
-that is not neutral — it hurts. One command turns it off.
+that is not neutral — it hurts.
 
 The name is literal.
 
 ## Documentation
 
 The maintainer has a headache. Do not talk too much — that rule applies to
-agents working on this repo, not just to the command's output.
+agents working on this repo, not just to the product's output.
 
 | Read | For |
 |---|---|
 | [AGENTS.md](AGENTS.md) | Canonical instructions for every AI agent |
-| [.ai/business-logic.md](.ai/business-logic.md) | Why it exists, what it deliberately refuses to do |
+| [.ai/business-logic.md](.ai/business-logic.md) | Why it exists, what it refuses to do |
 | [.ai/technical-logic.md](.ai/technical-logic.md) | How it works and what breaks it |
-| [.ai/decisions/](.ai/decisions/) | Why one command, why duplicated text, why AGENTS.md |
+| [.ai/decisions/](.ai/decisions/) | Why always on, why one file, why one command |
 | [.ai/context/repo-map.md](.ai/context/repo-map.md) | Every file, and where to look for what |
-
-Per-tool config files (`CLAUDE.md`, `CODEX.md`, `KIMI.md`, `GEMINI.md`,
-`QWEN.md`, `GROK.md`, `.cursor/rules/`, `.github/copilot-instructions.md`,
-`.windsurfrules`, `.clinerules`) are four-line pointers to `AGENTS.md`.
 
 ## Contributing
 
-One rule: **never add a second command.** No aliases, flags, modes or setup
-steps. See [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md) — the
-constraint is the product.
-
-Editing the command text touches two files that must stay identical. Follow
-[.ai/technical-logic.md](.ai/technical-logic.md).
+One rule: **never add a second command** — no aliases, flags, modes, extra
+skills or command files. See [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md).
+The text lives in one file; see [.ai/technical-logic.md](.ai/technical-logic.md).
 
 MIT licensed. See [LICENSE](LICENSE).

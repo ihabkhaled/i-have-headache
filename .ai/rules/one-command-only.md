@@ -9,9 +9,11 @@ alternative activation path.
 Docs, rules and ADRs are not commands. Adding those is fine.
 
 A **skill is a command**: plugin skills appear in the slash-command palette.
-Exactly one skill exists, `skills/i-have-headache/`, sharing the command's name
-so it adds no palette entry. Never add a second skill — any other name is a
-second command. Procedures go in `.ai/` as documents. See
+Exactly one skill exists, `skills/i-have-headache/`, and it *is* the command —
+there is no `commands/` directory and no Codex prompt. Never add a second skill,
+a command file or a prompt file: each is a second entry. Concise mode is always
+on ([ADR-0006](../decisions/ADR-0006-always-on-one-source.md)); the command only
+re-asserts it. Procedures go in `.ai/` as documents. See
 [ADR-0005](../decisions/ADR-0005-no-skills-directory.md).
 
 If asked to add an option, decline and point at

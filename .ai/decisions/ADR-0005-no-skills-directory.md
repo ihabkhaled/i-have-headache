@@ -1,5 +1,7 @@
 # ADR-0005 — Exactly one skill, named identically to the command
 
+*Amended 2026-09-19 by [ADR-0006](ADR-0006-always-on-one-source.md): the skill is now the only copy and the command; `commands/` is gone.*
+
 *Status: accepted — 2026-09-13. Supersedes the original ban on `skills/`.*
 
 ## Context

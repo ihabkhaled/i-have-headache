@@ -18,8 +18,10 @@ while working on it has misunderstood the codebase.
 
 ## What this repository is
 
-A one-command plugin for Claude Code, OpenAI Codex and Cursor. Invoking
-`/i-have-headache` switches the assistant into concise mode for the session.
+A plugin for Claude Code, OpenAI Codex and Cursor that keeps the assistant
+concise. It is **always on**: nothing needs to be typed. `/i-have-headache` is
+the one command, and it only re-asserts it. See
+[ADR-0006](.ai/decisions/ADR-0006-always-on-one-source.md).
 
 ## The hard constraint
 
@@ -32,28 +34,28 @@ This is a product requirement, not a preference. See
 
 Adding docs, rules and ADRs is fine — none of those are commands. Skills are
 different: a plugin skill is surfaced as a slash command. Exactly one skill
-exists, `skills/i-have-headache/`, named identically to the command so the
-palette shows one entry. **Never add a second skill.** See
+exists, `skills/i-have-headache/`, and it is the command. **Never add a second
+skill, a `commands/` file or a Codex prompt** — each is a second entry. See
 [ADR-0005](.ai/decisions/ADR-0005-no-skills-directory.md).
 
 ## Layout
 
 | Path | Purpose |
 |---|---|
-| `commands/i-have-headache.md` | Command body — source of truth, shared by Claude Code and Cursor |
-| `skills/i-have-headache/SKILL.md` | Same body as a skill — required by OpenAI submission |
-| `.codex/prompts/i-have-headache.md` | Codex prompt — same text, frontmatter stripped |
+| `skills/i-have-headache/SKILL.md` | The only copy of the text — the skill and the command |
+| `hooks/` | Claude SessionStart hook: prints the rules from the skill — always on |
+| `install.sh`, `install.ps1` | One-line install for Claude Code, Codex and Cursor |
 | `.claude-plugin/plugin.json` | Claude Code plugin manifest |
 | `.claude-plugin/marketplace.json` | Makes the repo its own marketplace |
-| `.cursor-plugin/plugin.json` | Cursor plugin manifest |
+| `.cursor-plugin/plugin.json` | Cursor plugin manifest (skills only) |
 | `assets/` | Logo and composer icon, plus the script that draws them |
 | `.ai/` | Knowledge layer — logic, decisions, rules, context |
 
 ## Before you change the command text
 
-The three command bodies must stay byte-identical below the frontmatter. Follow
-[.ai/technical-logic.md](.ai/technical-logic.md). Editing one
-without the other is the single most likely bug in this repo.
+Edit `skills/i-have-headache/SKILL.md` — it is the only copy. Keep the line that
+starts `Concise mode is always on`: the hook and both installers cut the
+always-on text there. See [.ai/technical-logic.md](.ai/technical-logic.md).
 
 ## Knowledge
 

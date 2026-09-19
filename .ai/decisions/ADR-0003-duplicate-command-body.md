@@ -1,5 +1,7 @@
 # ADR-0003 — Duplicate the command body rather than generate it
 
+*Superseded 2026-09-19 by [ADR-0006](ADR-0006-always-on-one-source.md): one copy, the skill.*
+
 *Status: accepted — 2026-09-13*
 
 ## Context

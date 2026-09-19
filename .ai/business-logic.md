@@ -1,6 +1,6 @@
 # Business logic
 
-*Last verified: 2026-09-13*
+*Last verified: 2026-09-19*
 
 ## The problem being sold
 
@@ -14,7 +14,11 @@ assistant will not shut up.
 
 ## The product rule
 
-**One command. `/i-have-headache`. Nothing else.**
+**Always on. One skill, which is also the one command. Nothing else.**
+
+Since 2026-09-19 nothing has to be typed: concise mode applies to every session
+([ADR-0006](decisions/ADR-0006-always-on-one-source.md)). The command remains as
+an explicit re-assert.
 
 This is the entire product. It is also the entire constraint. See
 [ADR-0002](decisions/ADR-0002-one-command-only.md) for why it is inviolable.
@@ -39,8 +43,7 @@ requires reading anything, it has failed.
 
 ## Explicit non-goals
 
-- Persistence across sessions. Concise mode lasts the session; a new session
-  starts normal. Making it sticky would need config, which would need a command.
+- A setting to make it opt-in again. Uninstalling is the global off.
 - Adjustable verbosity levels. That is a flag. Flags are forbidden.
 - A way to turn it off. Ask for more detail in plain language instead.
 - Any platform beyond Claude Code, Cursor and Codex, unless someone asks.

@@ -1,6 +1,15 @@
 # Memory
 
-*Last verified: 2026-09-13*
+*Last verified: 2026-09-19*
+
+## 2026-09-19 — always on, at the maintainer's request
+
+"No need to write down /i-have-headache" meant: concise without typing anything.
+Asked and confirmed before building. Concise mode is now injected every session
+(ADR-0006); the acknowledgement stays for explicit runs only, or every session
+would open with it.
+
+Reverses when: the maintainer asks for opt-in back.
 
 ## 2026-09-13 — one command is a hard product invariant
 

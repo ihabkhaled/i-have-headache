@@ -17,7 +17,8 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 | [0002](decisions/ADR-0002-one-command-only.md) | Exactly one user-facing command, permanently |
 | [0003](decisions/ADR-0003-duplicate-command-body.md) | Duplicate the command body rather than generate it |
 | [0004](decisions/ADR-0004-cursor-shares-the-command-directory.md) | Cursor reuses `commands/` instead of getting a copy |
-| [0005](decisions/ADR-0005-no-skills-directory.md) | No `skills/` directory — a plugin skill is a command |
+| [0005](decisions/ADR-0005-no-skills-directory.md) | Exactly one skill, named as the command |
+| [0006](decisions/ADR-0006-always-on-one-source.md) | Always on; the skill is the only copy of the text |
 
 ## Rules
 
@@ -31,7 +32,7 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 
 | Procedure | Where |
 |---|---|
-| Editing the command text (three files must stay identical) | [technical-logic.md](technical-logic.md#keeping-the-three-bodies-in-sync) |
+| Editing the command text (one file: the skill) | [technical-logic.md](technical-logic.md#always-on-per-platform) |
 | Regenerating the logo | `python assets/make_logo.py` |
 
 Procedures are documents, not skills. A plugin skill is a slash command, and

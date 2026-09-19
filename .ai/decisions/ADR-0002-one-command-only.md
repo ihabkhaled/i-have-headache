@@ -1,5 +1,7 @@
 # ADR-0002 — Exactly one user-facing command, permanently
 
+*Amended 2026-09-19 by [ADR-0006](ADR-0006-always-on-one-source.md): concise mode is always on at the maintainer's request. Still exactly one command.*
+
 *Status: accepted — 2026-09-13*
 
 ## Context

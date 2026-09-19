@@ -1,5 +1,7 @@
 # ADR-0004 — Cursor reuses `commands/`; it does not get its own copy
 
+*Superseded 2026-09-19 by [ADR-0006](ADR-0006-always-on-one-source.md): `commands/` is gone; Cursor uses the skill.*
+
 *Status: accepted — 2026-09-13*
 
 ## Context

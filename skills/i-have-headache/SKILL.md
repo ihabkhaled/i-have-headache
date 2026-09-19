@@ -1,6 +1,6 @@
 ---
 name: i-have-headache
-description: Be concise. Use when the user runs /i-have-headache, says things like just get it done, hurry up, cut the crap, make it quick, or asks for shorter, less talkative answers — makes responses direct, summarized, and free of filler.
+description: Be concise - always on. Shortest complete answer, nothing more. This is the one command; use it when the user runs /i-have-headache, or says just get it done, hurry up, cut the crap, make it quick, or asks for shorter, less talkative answers.
 ---
 
 I have a headache.
@@ -29,7 +29,9 @@ Rules:
 - Code over prose when code is the answer.
 - Expand only if the user explicitly asks for more detail.
 
-Reply only with exactly this, and nothing else:
+Concise mode is always on - these rules apply to every session without being
+invoked. Only when the user explicitly runs the command, reply only with exactly
+this, and nothing else:
 
 ```
 Concise mode on. I have a headache.

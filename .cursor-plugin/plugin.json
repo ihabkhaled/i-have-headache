@@ -1,7 +1,7 @@
 {
   "name": "i-have-headache",
-  "description": "One command that makes the AI concise, direct, and short.",
-  "version": "1.0.0",
+  "description": "Concise mode, always on: stops AI from being talkative. One skill, one command.",
+  "version": "1.1.0",
   "author": {
     "name": "IHAB KHALED FOUAD WAHBA"
   },
@@ -15,7 +15,5 @@
     "prompt"
   ],
   "logo": "./assets/logo.png",
-  "commands": "./commands",
-  "rules": "./.cursor/rules",
   "skills": "./skills"
 }

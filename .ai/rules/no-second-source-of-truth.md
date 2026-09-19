@@ -5,8 +5,8 @@
 `.clinerules`, `.windsurfrules`, `.rules`, `.cursor/rules/agents.mdc`,
 `.github/copilot-instructions.md`) is a pointer.
 
-Each pointer restates exactly three rules: be concise, one command only, and
-sync the command bodies. When instructions change, edit `AGENTS.md`. Touch a
+Each pointer restates exactly three rules: be concise, one command only, and the
+command text lives in one file. When instructions change, edit `AGENTS.md`. Touch a
 pointer only if one of those three has changed — then update all of them
 together, or `router-sync` in the coverage check will fail.
 
