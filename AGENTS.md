@@ -16,26 +16,42 @@ This is not just house style — it is the product. This repository ships a
 command whose entire purpose is enforcing that rule. An agent that is verbose
 while working on it has misunderstood the codebase.
 
-## The simple code rule
+## The right-sized code rule
 
-When code is needed, start with the easiest correct implementation. Prefer the
-smallest safe change, clear names, straightforward control flow, existing
-patterns and existing dependencies.
+Plan the size of the change before designing it. A patch should remain a patch;
+a requested or genuinely necessary refactor should be allowed to become a real
+refactor. Do not force every task into either extreme.
 
-Write code a junior developer can follow and a CTO can scan. Do not add
-abstractions, layers, helpers, patterns, configuration, future-proofing or
-cleverness without a current need. Do not refactor unrelated code.
+Read the surrounding code and follow the project's conventions first. Ask
+grouped questions when the answers materially change scope, architecture,
+behavior, risk or acceptance; do not block an obvious minor patch on trivial
+questions.
 
-After the change works, simplify it once. Remove needless code, branches,
-indirection, duplication and comments. Never use "simple" as an excuse to skip
-correctness, security, required tests or real performance requirements. See
-[ADR-0007](.ai/decisions/ADR-0007-simple-code-same-skill.md).
+Write clean, organized code a junior developer can follow, a senior can maintain,
+and a CTO can scan. Use descriptive names, focused functions, straightforward
+control flow, sensible file boundaries and the project's existing patterns.
+
+Abstractions, patterns, shared error frameworks and defensive mechanisms are
+allowed when they solve a real problem, fit the codebase, or improve
+maintainability. They are not goals by themselves. A little simple duplication
+can be better than a bad abstraction; a good abstraction should be used when it
+makes the code easier to understand and maintain.
+
+When the user explicitly asks for a patch or minor change, minimize touched
+surface and avoid unrelated refactors. When the user explicitly asks for a
+refactor, refactor it properly. Preserve correctness, security, all relevant
+tests and real performance requirements in either case.
+
+After the change works, simplify it once without fighting the project's
+architecture. See
+[ADR-0008](.ai/decisions/ADR-0008-right-sized-clean-code.md).
 
 ## What this repository is
 
 A plugin for Claude Code, OpenAI Codex and Cursor that keeps the assistant
-concise and generated code simple. It is **always on**: nothing needs to be
-typed. `/i-have-headache` is the one command, and it only re-asserts it. See
+concise and generated code clean, readable and right-sized for the actual task.
+It is **always on**: nothing needs to be typed. `/i-have-headache` is the one
+command, and it only re-asserts it. See
 [ADR-0006](.ai/decisions/ADR-0006-always-on-one-source.md).
 
 ## The hard constraint
@@ -70,15 +86,15 @@ skill, a `commands/` file or a Codex prompt** — each is a second entry. See
 
 Edit `skills/i-have-headache/SKILL.md` — it is the only copy. Keep the line that
 starts `Concise mode is always on`: the hook and both installers cut the
-always-on text there. All always-on behavior, including the simple-code rules,
+always-on text there. All always-on behavior, including the clean-code rules,
 must stay above that line. See [.ai/technical-logic.md](.ai/technical-logic.md).
 
 ## Versioning
 
 Every user-facing behavior change must bump the plugin version. Keep the version
 identical in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and
-`.cursor-plugin/plugin.json`. This simple-code release is `1.2.0`. Do not merge a
-future behavior change with stale or mismatched manifest versions.
+`.cursor-plugin/plugin.json`. This right-sized clean-code release is `1.3.0`.
+Do not merge a future behavior change with stale or mismatched manifest versions.
 
 ## Knowledge
 

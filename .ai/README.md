@@ -20,12 +20,13 @@ Start at [AGENTS.md](../AGENTS.md). This directory holds the detail behind it.
 | [0005](decisions/ADR-0005-no-skills-directory.md) | Exactly one skill, named as the command |
 | [0006](decisions/ADR-0006-always-on-one-source.md) | Always on; the skill is the only copy of the text |
 | [0007](decisions/ADR-0007-simple-code-same-skill.md) | Simple-first code belongs in the same skill and command |
+| [0008](decisions/ADR-0008-right-sized-clean-code.md) | Match architecture and refactoring depth to the real task |
 
 ## Rules
 
 | Rule | Enforces |
 |---|---|
-| [be-concise.md](rules/be-concise.md) | The headache rule: concise output and simple code |
+| [be-concise.md](rules/be-concise.md) | Concise output and right-sized clean code |
 | [one-command-only.md](rules/one-command-only.md) | ADR-0002 |
 | [no-second-source-of-truth.md](rules/no-second-source-of-truth.md) | ADR-0001 |
 

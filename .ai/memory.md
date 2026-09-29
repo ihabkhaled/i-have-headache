@@ -2,11 +2,37 @@
 
 *Last verified: 2026-09-29*
 
+## 2026-09-29 — clean-code rules are flexible and scope-aware
+
+The maintainer clarified the simple-code direction after 1.2.0.
+
+The core rule is not "avoid abstractions." It is: understand what was requested,
+plan the right size, and use the amount of engineering the task really needs.
+
+Explicit patch/minor work should minimize touched surface and avoid unrelated
+refactors. Explicit refactor work should be allowed to refactor properly.
+Abstractions and patterns are valid when they improve maintainability or clean
+architecture. Shared/generic error handling should follow project conventions.
+Defensive mechanisms belong when real work needs them.
+
+Functions should be focused without arbitrary line limits. Names should be
+descriptive. Comments should be small, not large narrative blocks. Tests should
+cover all relevant cases.
+
+Questions and planning happen before code when answers materially affect the
+solution. These are flexible engineering defaults, not rigid contracts.
+
+This ships as 1.3.0. See ADR-0008.
+
+Reverses when: the maintainer explicitly replaces the context-sensitive coding
+policy.
+
 ## 2026-09-29 — behavior changes bump the version
 
 The maintainer explicitly requires a version bump whenever user-facing plugin
 behavior changes. Keep the Claude plugin, Claude marketplace and Cursor manifest
-versions identical. The simple-code behavior ships as `1.2.0`.
+versions identical. The simple-code behavior shipped as `1.2.0`; the
+right-sized clean-code refinement ships as `1.3.0`.
 
 Reverses when: the maintainer explicitly changes the release/versioning policy.
 
@@ -18,11 +44,12 @@ solution first, junior-to-CTO readable code, smallest safe changes, no
 over-engineering, no speculative complexity, and one simplification pass after
 the solution works.
 
-This extends `skills/i-have-headache/SKILL.md`; it does not create a second
-skill, command, mode or configuration surface. See ADR-0007.
+ADR-0008 later refined "smallest safe changes" into a scope-aware rule: patch
+requests stay narrow, but requested or necessary refactors are allowed to be
+proper refactors.
 
-Reverses when: the maintainer explicitly asks for a different default or lifts
-the one-command constraint.
+This extends `skills/i-have-headache/SKILL.md`; it does not create a second
+skill, command, mode or configuration surface.
 
 ## 2026-09-19 — always on, at the maintainer's request
 
@@ -67,14 +94,12 @@ trimming `.ai/` as cleanup — it is wanted.
 ## 2026-09-13 — a plugin skill IS a user-facing command
 
 A `skills/` directory was added and immediately produced a second palette entry,
-`/i-have-headache:sync-command-bodies`, breaking the one hard invariant. Plugin
-skills are surfaced as slash commands by Claude Code, Cursor and the OpenAI
-submission scanner alike.
+`/i-have-headache:sync-command-bodies`, breaking the one hard invariant.
 
-Corrected 2026-09-13: OpenAI submission *requires* at least one skill, so the
-ban was wrong. The real invariant is **one user-facing name**. Exactly one
-skill exists, named `i-have-headache` like the command, which adds no palette
-entry. A differently-named skill would. See ADR-0005.
+Corrected 2026-09-13: OpenAI submission requires at least one skill. The real
+invariant is **one user-facing name**. Exactly one skill exists, named
+`i-have-headache` like the command. A differently-named skill would create a
+second entry. See ADR-0005.
 
 Reverses when: a platform offers a private, non-palette instruction slot —
 verified on every target platform, not just one.

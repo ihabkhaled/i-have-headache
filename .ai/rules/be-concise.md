@@ -1,22 +1,34 @@
-# Rule — be concise
+# Rule — be concise and right-size the code
 
-The maintainer has a headache. Do not talk too much or make simple work
-complicated.
+The maintainer has a headache. Do not talk too much or make the code harder than
+the real task requires.
 
 Give the shortest complete answer that solves the request. Cut filler,
-preambles, restatements of the request, long intros and conclusions,
-over-explaining, repetition, and giant lists where a sentence works.
+preambles, restatements, long intros and conclusions, over-explaining,
+repetition, and giant lists where a sentence works.
 
-For code, start with the easiest correct solution. Prefer the smallest safe
-change, clear control flow, existing patterns and existing dependencies. Avoid
-unnecessary abstractions, layers, future-proofing and cleverness. After the code
-works, simplify it once.
+For code, determine the scope before the design. An explicit patch stays narrow;
+an explicit or genuinely necessary refactor is allowed to refactor properly.
 
-"Simple" does not override correctness, security, required tests or real
-performance requirements. Readability matters more than minimum line count.
+Follow project conventions. Prefer descriptive names, focused functions, clear
+control flow, sensible file organization and readable responsibilities.
 
-Expand only when explicitly asked.
+Abstractions, patterns, dependencies, defensive mechanisms and shared error
+frameworks are neither forbidden nor required. Use them when the real problem,
+maintainability or existing architecture justifies them. Do not add them merely
+to make a small change look sophisticated.
+
+Ask grouped questions when the answers materially change the implementation.
+Do not interrupt for trivial choices.
+
+Keep comments small and useful. Cover all relevant normal, edge, error,
+regression and integration cases for changed behavior.
+
+After the solution works, simplify it once without removing architecture that is
+actually earning its keep.
+
+These are flexible defaults, not mechanical limits. Correctness, security,
+maintainability, project conventions and the user's explicit scope win.
 
 This applies to agents *working on* this repository, not only to the command's
-output. A verbose summary or an over-engineered two-line change misses the point
-of the codebase.
+output.

@@ -1,5 +1,9 @@
 # i-have-headache
-I have a headache. A Claude Code, Codex and Cursor plugin that stops AI from being talkative and over-engineering code. **Always on** — concise answers plus simple, minimal, readable and maintainable code without typing anything.
+
+I have a headache. A Claude Code, Codex and Cursor plugin that stops AI from
+being talkative and from over-engineering code. **Always on** — concise answers
+plus clean, organized, readable code with the amount of architecture the actual
+task needs.
 
 ## Install
 
@@ -35,13 +39,20 @@ Nothing. It is always on. To get detail back for one answer, ask for it.
 The one command re-asserts it: `/i-have-headache:i-have-headache` (Claude Code),
 `$i-have-headache` (Codex), `/i-have-headache` (Cursor).
 
-When coding, the same skill prefers the easiest correct solution, the smallest
-safe change, existing patterns and dependencies, and code a junior developer can
-follow and a CTO can scan. It avoids speculative abstractions, unnecessary
-layers and cleverness. After the code works, it does one simplification pass.
+For coding, the same skill first decides what the task actually is. A minor
+patch stays small. A requested or genuinely necessary refactor can use proper
+architecture. The goal is not "always fewer lines" or "never use patterns" — it
+is the easiest maintainable code that fits the real work.
 
-Correctness, security, required tests and real performance requirements still
-win. "Simple" never means careless.
+It prefers descriptive names, focused functions, clear control flow, organized
+files, project conventions and existing dependencies. Abstractions, design
+patterns, shared error frameworks, validation, retries, fallbacks, caching and
+other engineering tools are used when they solve a real problem or fit the
+codebase, not because they sound sophisticated.
+
+It asks useful questions when answers can materially change the implementation,
+covers all relevant success/error/edge/regression cases, and performs one final
+simplification pass after the solution works.
 
 ## How
 
@@ -55,9 +66,12 @@ All three are cut from one file, `skills/i-have-headache/SKILL.md`.
 
 ## Why
 
-AI assistants default to verbose and often over-engineer straightforward code.
-They restate the request, add abstractions for imagined futures, then explain all
-of it. When you have a headache, that is the opposite of helpful.
+AI assistants can fail in two opposite directions: turning a tiny patch into an
+architecture project, or forcing an actually complex requirement into a brittle
+tiny patch. This plugin aims for the right amount of engineering.
+
+Simple task → simple change. Real refactor → proper refactor. In both cases the
+code should be clean, readable and easy for the next developer to maintain.
 
 The name is literal.
 
@@ -71,19 +85,21 @@ applies to agents working on this repo, not just to the product's output.
 | [AGENTS.md](AGENTS.md) | Canonical instructions for every AI agent |
 | [.ai/business-logic.md](.ai/business-logic.md) | Why it exists, what it refuses to do |
 | [.ai/technical-logic.md](.ai/technical-logic.md) | How it works and what breaks it |
-| [.ai/decisions/](.ai/decisions/) | Why always on, why one file, why one command |
+| [.ai/decisions/](.ai/decisions/) | Why always on, one command, and right-sized clean code |
 | [.ai/context/repo-map.md](.ai/context/repo-map.md) | Every file, and where to look for what |
 
 ## Contributing
 
 One rule: **never add a second command** — no aliases, flags, modes, extra
-skills or command files. See [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md).
-The text lives in one file; see [.ai/technical-logic.md](.ai/technical-logic.md).
+skills or command files. See
+[ADR-0002](.ai/decisions/ADR-0002-one-command-only.md).
 
-Keep changes simple too: smallest safe diff, no unrelated refactors, no
-abstractions without a current need.
+For code changes, match implementation size to requested scope, follow project
+conventions, keep patches narrow when patching is requested, and allow proper
+architecture when a real refactor needs it. See
+[ADR-0008](.ai/decisions/ADR-0008-right-sized-clean-code.md).
 
 Behavior changes must bump the plugin version and keep the Claude plugin, Claude
-marketplace and Cursor manifest versions identical. This release is `1.2.0`.
+marketplace and Cursor manifest versions identical. This release is `1.3.0`.
 
 MIT licensed. See [LICENSE](LICENSE).

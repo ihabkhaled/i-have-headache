@@ -3,13 +3,13 @@
   "owner": {
     "name": "IHAB KHALED FOUAD WAHBA"
   },
-  "description": "i-have-headache - concise + simple-code mode for AI coding tools, always on.",
+  "description": "i-have-headache - concise + right-sized clean-code mode for AI coding tools, always on.",
   "plugins": [
     {
       "name": "i-have-headache",
       "source": "./",
-      "description": "Concise + simple-code mode, always on: short answers, minimal readable code. One skill, one command.",
-      "version": "1.2.0"
+      "description": "Concise + right-sized clean-code mode, always on: short answers and maintainable code matched to the real task. One skill, one command.",
+      "version": "1.3.0"
     }
   ]
 }

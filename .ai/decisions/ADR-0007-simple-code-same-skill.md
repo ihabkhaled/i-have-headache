@@ -1,7 +1,7 @@
 # ADR-0007 — Simple code belongs in the same skill
 
 *Status: accepted — 2026-09-29. Extends ADR-0006; preserves ADR-0002 and
-ADR-0005.*
+ADR-0005. Coding semantics refined by ADR-0008.*
 
 ## Context
 
@@ -30,38 +30,28 @@ requested coding behavior.
 
 Option B.
 
-The simple-code rules live in `skills/i-have-headache/SKILL.md` above the
+The coding rules live in `skills/i-have-headache/SKILL.md` above the
 `Concise mode is always on` marker so the existing Claude hook, Codex installer
 block and Cursor rule all inherit them automatically.
 
-The default is:
-
-- easiest correct solution before a complicated one;
-- smallest safe change using existing patterns and dependencies;
-- readable, direct code with no speculative abstractions or future-proofing;
-- no imagined scale or edge cases unless current requirements or real risk need
-  them;
-- one simplification pass after the solution works;
-- correctness, security, required tests and real performance needs remain
-  non-negotiable.
+Version 1.2.0 established the simple-first direction. ADR-0008 refines the
+meaning of "simple": it is context-sensitive, not a prohibition on abstraction
+or architecture. Patch requests stay patch-sized; requested or necessary
+refactors can use the structure they genuinely need.
 
 ## Consequences
 
-Good: one command still means everything; no new surface to learn; generated
-code has fewer moving parts and lower maintenance cost.
+Good: one command still means everything; no new surface to learn.
 
 Good: the installers and hook require no functional change because they already
 extract the skill body up to the existing marker.
 
-Release: this user-facing behavior change bumps the plugin from `1.1.0` to
-`1.2.0`. Future user-facing behavior changes must also bump the version and keep
-all plugin manifests synchronized.
+Release history: 1.2.0 introduced simple-first coding. 1.3.0 refines it into
+right-sized clean-code judgment. Future user-facing behavior changes must also
+bump the version and keep all plugin manifests synchronized.
 
-Tradeoff: "simple" is contextual. The skill therefore defines it as lower
-cognitive load and fewer unnecessary moving parts, not minimum line count.
-
-Bad: a genuinely complex requirement still produces complex code. The plugin
-must not hide required complexity just to look minimal.
+Tradeoff: "simple" is contextual. It means lower unnecessary cognitive load,
+not minimum line count, file count or architecture.
 
 ## Reversal
 

@@ -4,63 +4,78 @@
 
 ## The problem being sold
 
-AI coding assistants default to verbose. They restate the request, explain what
-they are about to do, do it, explain what they did, then offer next steps. They
-also often turn straightforward code into abstractions, layers and future-proofing
-that the current problem did not ask for.
+AI coding assistants can fail in two opposite directions.
 
-For a user who already knows what they want, both are noise: more to read, more
-code to review, and more code to maintain.
+They can over-engineer small work: a local patch becomes abstractions, files,
+patterns, configuration and future-proofing the user never asked for.
+
+They can also under-engineer real work: a meaningful refactor or architectural
+change gets forced into a tiny diff that is harder to maintain because the agent
+is trying to look "simple."
+
+For a user who already knows what they want, both are noise and maintenance
+cost. The product should choose the amount of engineering the actual task needs.
 
 The name is literal. This exists for the moment when you have a headache and the
-assistant will not shut up or stop making simple work complicated.
+assistant will not stop talking or turns straightforward work into something
+harder than it needs to be.
 
 ## The product rule
 
 **Always on. One skill, which is also the one command. Nothing else.**
 
 Since 2026-09-19 nothing has to be typed: concise mode applies to every session
-([ADR-0006](decisions/ADR-0006-always-on-one-source.md)). Since 2026-09-29 the
-same skill also defaults coding work to the easiest correct, maintainable
-implementation ([ADR-0007](decisions/ADR-0007-simple-code-same-skill.md)). The
-command remains an explicit re-assert.
+([ADR-0006](decisions/ADR-0006-always-on-one-source.md)).
 
-This is the entire product. It is also the entire constraint. See
-[ADR-0002](decisions/ADR-0002-one-command-only.md) for why it is inviolable.
+Version 1.2.0 added simple-first coding
+([ADR-0007](decisions/ADR-0007-simple-code-same-skill.md)). Version 1.3.0 refines
+that into right-sized clean code
+([ADR-0008](decisions/ADR-0008-right-sized-clean-code.md)): understand the task,
+read the project, ask useful questions when needed, then match the implementation
+size to the real scope.
 
-The value is not the prompt text — anyone can write "be concise" or "keep it
-simple." The value is that there is nothing to learn, configure, or choose. Zero
-decisions between headache and relief.
+The command remains an explicit re-assert.
+
+The value is not a universal clean-code doctrine. The value is removing bad
+choices at both extremes: needless complexity on small work and artificial
+minimalism on work that really needs structure.
 
 ## Who it is for
 
-Someone mid-task, already annoyed, who wants the answer or code without ceremony.
-If using it requires reading anything, choosing a mode, or cleaning up
-unnecessary architecture afterward, it has failed.
+Someone mid-task who wants an answer or code without ceremony, but still wants
+good engineering judgment.
+
+A patch should not become a redesign. A refactor should not be crippled just to
+keep the diff small. The next junior, senior or CTO should be able to understand
+why the code is shaped the way it is.
 
 ## Success criteria
 
 | Criterion | Met when |
 |---|---|
 | Zero learning cost | The command name is the entire instruction |
-| Zero configuration | No settings, no arguments, no setup step |
+| Zero configuration | No settings, arguments or modes |
 | Works everywhere | Identical behavior in Claude Code, Cursor and Codex |
-| Simple code | The easiest correct maintainable solution is considered before a complicated one |
-| Minimal change | Unrelated refactors and speculative abstractions are avoided |
-| Reversible | Asking for detail restores normal verbosity, no second command needed |
+| Right-sized change | Implementation depth matches the requested and necessary scope |
+| Project-native code | Existing conventions, architecture and error/testing styles are followed |
+| Readable code | Names, control flow, responsibilities and files are easy to follow |
+| Useful architecture | Abstractions and patterns exist when they improve the real solution, not by reflex |
+| Complete verification | All relevant normal, edge, error, regression and integration cases are covered |
+| Reversible verbosity | Asking for detail restores normal verbosity without a second command |
 
 ## Explicit non-goals
 
 - A setting to make it opt-in again. Uninstalling is the global off.
-- Adjustable verbosity or coding-complexity levels. Those are modes or flags.
+- Adjustable coding-complexity levels. Those would be modes or flags.
 - A separate clean-code, architecture, refactor or simplicity command.
-- Maximum line-count reduction. Readability and maintainability matter more.
-- Avoiding necessary complexity when correctness, security, tests or real
-  performance requirements demand it.
+- Mechanical limits for function length, file count, abstraction count or line
+  count.
+- Banning design patterns, shared error frameworks, defensive code or
+  dependencies when the actual problem or project architecture needs them.
+- Refactoring unrelated code during a patch just because it could be cleaner.
 - Any platform beyond Claude Code, Cursor and Codex, unless someone asks.
 
 ## Money, entitlements, limits
 
-None. No pricing, no quotas, no thresholds, no user data, no network calls, no
-telemetry. The plugin is prompt text, installers, hooks and manifests. Nothing
-here can cost anyone money or break a commercial commitment.
+None. No pricing, quotas, thresholds, user data, network calls or telemetry.
+The plugin is prompt text, installers, hooks and manifests.
