@@ -1,6 +1,28 @@
 # Memory
 
-*Last verified: 2026-09-19*
+*Last verified: 2026-09-29*
+
+## 2026-09-29 — behavior changes bump the version
+
+The maintainer explicitly requires a version bump whenever user-facing plugin
+behavior changes. Keep the Claude plugin, Claude marketplace and Cursor manifest
+versions identical. The simple-code behavior ships as `1.2.0`.
+
+Reverses when: the maintainer explicitly changes the release/versioning policy.
+
+## 2026-09-29 — simple code belongs in the same skill
+
+The maintainer explicitly asked to keep the same `/i-have-headache` skill and
+the same one-command product while adding a coding default: easiest correct
+solution first, junior-to-CTO readable code, smallest safe changes, no
+over-engineering, no speculative complexity, and one simplification pass after
+the solution works.
+
+This extends `skills/i-have-headache/SKILL.md`; it does not create a second
+skill, command, mode or configuration surface. See ADR-0007.
+
+Reverses when: the maintainer explicitly asks for a different default or lifts
+the one-command constraint.
 
 ## 2026-09-19 — always on, at the maintainer's request
 

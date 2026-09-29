@@ -1,7 +1,7 @@
 {
   "name": "i-have-headache",
-  "description": "Concise mode, always on: stops AI from being talkative. One skill, one command.",
-  "version": "1.1.0",
+  "description": "Concise + simple-code mode, always on: short answers, minimal readable code. One skill, one command.",
+  "version": "1.2.0",
   "author": {
     "name": "IHAB KHALED FOUAD WAHBA"
   },
@@ -11,6 +11,7 @@
   "keywords": [
     "concise",
     "brevity",
+    "simple-code",
     "productivity",
     "prompt"
   ],

@@ -1,5 +1,5 @@
 # i-have-headache
-I have a headache. A Claude Code, Codex and Cursor plugin that stops AI from being talkative, chatty, loquacious, verbose, long-winded, garrulous, wordy, a blabbermouth, motor-mouth, or chatterbox. **Always on** — concise, direct, summarized responses without typing anything.
+I have a headache. A Claude Code, Codex and Cursor plugin that stops AI from being talkative and over-engineering code. **Always on** — concise answers plus simple, minimal, readable and maintainable code without typing anything.
 
 ## Install
 
@@ -35,6 +35,14 @@ Nothing. It is always on. To get detail back for one answer, ask for it.
 The one command re-asserts it: `/i-have-headache:i-have-headache` (Claude Code),
 `$i-have-headache` (Codex), `/i-have-headache` (Cursor).
 
+When coding, the same skill prefers the easiest correct solution, the smallest
+safe change, existing patterns and dependencies, and code a junior developer can
+follow and a CTO can scan. It avoids speculative abstractions, unnecessary
+layers and cleverness. After the code works, it does one simplification pass.
+
+Correctness, security, required tests and real performance requirements still
+win. "Simple" never means careless.
+
 ## How
 
 | Platform | Always on via |
@@ -47,16 +55,16 @@ All three are cut from one file, `skills/i-have-headache/SKILL.md`.
 
 ## Why
 
-AI assistants default to verbose: they restate your request, explain what they
-are about to do, do it, then explain what they did. When you have a headache,
-that is not neutral — it hurts.
+AI assistants default to verbose and often over-engineer straightforward code.
+They restate the request, add abstractions for imagined futures, then explain all
+of it. When you have a headache, that is the opposite of helpful.
 
 The name is literal.
 
 ## Documentation
 
-The maintainer has a headache. Do not talk too much — that rule applies to
-agents working on this repo, not just to the product's output.
+The maintainer has a headache. Do not talk too much or over-engineer — that rule
+applies to agents working on this repo, not just to the product's output.
 
 | Read | For |
 |---|---|
@@ -71,5 +79,11 @@ agents working on this repo, not just to the product's output.
 One rule: **never add a second command** — no aliases, flags, modes, extra
 skills or command files. See [ADR-0002](.ai/decisions/ADR-0002-one-command-only.md).
 The text lives in one file; see [.ai/technical-logic.md](.ai/technical-logic.md).
+
+Keep changes simple too: smallest safe diff, no unrelated refactors, no
+abstractions without a current need.
+
+Behavior changes must bump the plugin version and keep the Claude plugin, Claude
+marketplace and Cursor manifest versions identical. This release is `1.2.0`.
 
 MIT licensed. See [LICENSE](LICENSE).

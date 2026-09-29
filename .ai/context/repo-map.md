@@ -1,6 +1,6 @@
 # Repo map
 
-*Last verified: 2026-09-19*
+*Last verified: 2026-09-29*
 
 No runtime code, no build, no dependencies. The product is one text file.
 
@@ -27,7 +27,7 @@ assets/composer-icon.png           256x256
 
 .ai/business-logic.md              why it exists, what it refuses to do
 .ai/technical-logic.md             how it works, what breaks it
-.ai/decisions/                     ADR-0001..0006
+.ai/decisions/                     ADR-0001..0007
 .ai/rules/                         enforceable constraints
 .ai/context/repo-map.md            this file
 .ai/memory.md                      durable notes
@@ -42,6 +42,7 @@ README.md                          install and use
 | Why does this exist? | `.ai/business-logic.md` |
 | How does it work? | `.ai/technical-logic.md` |
 | Why always on, one file? | `.ai/decisions/ADR-0006-always-on-one-source.md` |
+| Why simple code in the same command? | `.ai/decisions/ADR-0007-simple-code-same-skill.md` |
 | Can I add `--flag`? | `.ai/decisions/ADR-0002-one-command-only.md` (no) |
 | Can I add a skill? | `.ai/decisions/ADR-0005-no-skills-directory.md` (no) |
 | How do I change the logo? | `python assets/make_logo.py` after editing it |
