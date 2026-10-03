@@ -1,6 +1,6 @@
 # Technical logic
 
-*Last verified: 2026-09-29*
+*Last verified: 2026-10-03*
 
 ## How it works
 
@@ -21,7 +21,7 @@ See [ADR-0007](decisions/ADR-0007-simple-code-same-skill.md) and
 
 | Platform | Mechanism | Where |
 |---|---|---|
-| Claude Code | SessionStart hook prints the rules | `hooks/hooks.json` → `hooks/session-start.sh` |
+| Claude Code | SessionStart hook prints the rules; UserPromptSubmit hook adds a one-line reminder per prompt ([ADR-0009](decisions/ADR-0009-prompt-submit-reminder-hook.md)) | `hooks/hooks.json` → `hooks/session-start.sh`, `hooks/prompt-reminder.sh` |
 | Codex | marked block in `AGENTS.md` | `~/.codex/AGENTS.md`, or a repo's `AGENTS.md` |
 | Cursor | `alwaysApply` rule | `~/.cursor/rules/i-have-headache.mdc`, or a repo's |
 
@@ -34,7 +34,8 @@ Change that marker and the hook, `install.sh` and `install.ps1` stop at the wron
 place — all three look for it. Move a rule below it and that rule stops being
 always on.
 
-The hook is in exec form (`command: sh`, `args: [...]`): the shell form exits 126
+SessionStart has no matcher, so it fires on startup, resume, clear and compact.
+Both hooks are in exec form (`command: sh`, `args: [...]`): the shell form exits 126
 on Claude Code 2.1.154 under Git Bash.
 
 ## The one entry
@@ -66,8 +67,9 @@ mechanical prohibitions.
 
 ## Packaging
 
-Version `1.3.0` refines the existing simple-code behavior into right-sized
-clean-code behavior. Installation and activation are unchanged.
+Version `1.3.0` refined simple-code into right-sized clean code. Version
+`1.4.0` adds the loud contract with the 5-bullet cap (chat replies only; the
+clean-code rules govern code), the UserPromptSubmit hook and the version tool.
 
 Every future user-facing behavior change must bump the version. The version must
 stay identical in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`
@@ -83,12 +85,24 @@ defect.
 
 ## Installers
 
-`install.sh` and `install.ps1` behave identically: detect platforms, install
-the skill, write the always-on block and rule, remove the old Codex prompt, keep
-line endings, and uninstall only their own content.
+`install.sh` and `install.ps1` behave identically (same block, byte for byte):
+detect platforms, install the skill, write the always-on block and rule, remove
+the old `~/.codex/prompts/i-have-headache.md`, keep CRLF, and `--uninstall`
+restores files exactly. They remove only what contains "I have a headache.".
+`--uninstall` also removes the download cache `~/.i-have-headache/src` (made when
+run through `curl | sh`), the Claude marketplace entry, and an emptied `~/.codex`.
 
-The installer extraction logic needs no change for 1.3.0 because every new rule
-lives before the existing marker and is therefore included automatically.
+## Versioning
+
+`skills/i-have-headache/scripts/headache_version.py` keeps every manifest and
+`CHANGELOG.md` in step; CI runs `check --base`. See
+[version-discipline](rules/version-discipline.md) and
+[ADR-0010](decisions/ADR-0010-version-discipline-in-the-one-skill.md).
+
+## Tests
+
+`python -m pytest tests -q`: hooks, version tool, installers (temp home, Claude
+CLI disabled), repo invariants.
 
 ## Icons
 
@@ -110,4 +124,5 @@ python assets/make_logo.py
 | Treating flexible coding defaults as rigid bans | Reintroduces under-engineering |
 | Ignoring explicit patch scope | Reintroduces over-engineering |
 | Shell-form hook | Exits 126 on Claude Code 2.1.154 (Windows) |
+| Shipped change without a version bump | Installed plugins never update; the CI `version` job fails |
 | Non-square icons | Claude Code manifest validation fails |

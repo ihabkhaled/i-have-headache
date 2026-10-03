@@ -122,7 +122,10 @@ function Invoke-Claude([string[]]$A) {
 }
 
 if ($Uninstall) {
-    if ($Claude -and $ClaudeBin) { $null = Invoke-Claude @('plugin', 'uninstall', "$Name@$Name", '--scope', $Scope) }
+    if ($Claude -and $ClaudeBin) {
+        $null = Invoke-Claude @('plugin', 'uninstall', "$Name@$Name", '--scope', $Scope)
+        try { $null = Invoke-Claude @('plugin', 'marketplace', 'remove', $Name, '--scope', $Scope) } catch { }
+    }
     if ($Codex -or $Cursor) { Remove-Ours }
     if ($Codex -and (Test-Path $Contract)) {
         $crlf = Test-Crlf $Contract; $t = Read-Lf $Contract
@@ -136,6 +139,13 @@ if ($Uninstall) {
     foreach ($d in @($SkillsRoot, (Split-Path -Parent $SkillsRoot), (Split-Path -Parent $Rule), (Split-Path -Parent (Split-Path -Parent $Rule)))) {
         if ((Test-Path $d) -and -not (Get-ChildItem -Force $d)) { Remove-Item -Force $d }
     }
+    # An empty user-level Codex dir is one this installer made; never touch a project root.
+    if (-not $Repo -and (Test-Path $CodexDir) -and -not (Get-ChildItem -Force $CodexDir)) { Remove-Item -Force $CodexDir }
+    # The download cache this installer made (only when it is our checkout).
+    $Cache = Join-Path $UserHome '.i-have-headache\src'
+    if (Test-Checkout $Cache) { Remove-Item -Recurse -Force $Cache; Say "removed $Cache" }
+    $CacheRoot = Split-Path -Parent $Cache
+    if ((Test-Path $CacheRoot) -and -not (Get-ChildItem -Force $CacheRoot)) { Remove-Item -Force $CacheRoot }
     Say 'i-have-headache uninstalled.'; return
 }
 
@@ -158,7 +168,7 @@ if ($Codex -or $Cursor) {
 if ($Codex) {
     $crlf = Test-Crlf $Contract
     $existing = if (Test-Path $Contract) { (Remove-BlockText (Read-Lf $Contract)).TrimEnd("`n", ' ', "`t") } else { '' }
-    $block = "$BeginMark - installed by i-have-headache; reinstall to update. Replaced on reinstall. -->`n" + (Get-Rules) + "$EndMark`n"
+    $block = "$BeginMark - installed by i-have-headache; always on, no command needed; reinstall to update. Replaced on reinstall. -->`n" + (Get-Rules) + "$EndMark`n"
     $text = if ($existing) { "$existing`n`n$block" } else { $block }
     Write-Endings $Contract $text $crlf
     Say "wrote the concise-mode block in $Contract"
@@ -166,7 +176,7 @@ if ($Codex) {
     if ((Test-Path $override) -and ($Repo -or (Get-Item $override).Length -gt 0)) { Write-Warning "$override exists; Codex reads it INSTEAD of AGENTS.md there, so merge the block into it." }
 }
 if ($Cursor) {
-    Write-Utf8 $Rule ("---`ndescription: i-have-headache - concise mode, always on`nalwaysApply: true`n---`n`n" + (Get-Rules))
+    Write-Utf8 $Rule ("---`ndescription: i-have-headache - concise mode, always on, no command needed`nalwaysApply: true`n---`n`n" + (Get-Rules))
     Say "wrote $Rule"
 }
-Say 'Done. Concise mode is always on. Re-run to update; -Uninstall to remove.'
+Say 'Done. Always on - no command needed. Re-run to update; -Uninstall to remove.'

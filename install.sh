@@ -131,7 +131,7 @@ write_block() {
   if [ -f "$file" ]; then strip_block "$file"; trim_tail "$file"; fi
   {
     if [ -s "$file" ]; then printf '\n'; fi
-    printf '%s - installed by i-have-headache; reinstall to update. Replaced on reinstall. -->\n' "$BEGIN_MARK"
+    printf '%s - installed by i-have-headache; always on, no command needed; reinstall to update. Replaced on reinstall. -->\n' "$BEGIN_MARK"
     rules
     printf '%s\n' "$END_MARK"
   } >> "$file"
@@ -175,6 +175,7 @@ claude_run() { if [ -n "$TARGET_REPO" ]; then (cd "$TARGET_REPO" && "$CLAUDE_BIN
 if [ "$UNINSTALL" -eq 1 ]; then
   if [ "$WANT_CLAUDE" -eq 1 ] && [ -n "$CLAUDE_BIN" ]; then
     claude_run plugin uninstall "$NAME@$NAME" --scope "$SCOPE" || warn "claude: $NAME was not installed"
+    claude_run plugin marketplace remove "$NAME" --scope "$SCOPE" >/dev/null 2>&1 || true
   fi
   if [ "$WANT_CODEX" -eq 1 ] || [ "$WANT_CURSOR" -eq 1 ]; then remove_ours; fi
   if [ "$WANT_CODEX" -eq 1 ]; then remove_block "$CONTRACT"; fi
@@ -182,6 +183,12 @@ if [ "$UNINSTALL" -eq 1 ]; then
   for d in "$SKILLS_ROOT" "$(dirname -- "$SKILLS_ROOT")" "$(dirname -- "$RULE")" "$(dirname -- "$(dirname -- "$RULE")")"; do
     rmdir "$d" 2>/dev/null || true
   done
+  # An empty user-level Codex dir is one this installer made; never touch a project root.
+  if [ -z "$TARGET_REPO" ]; then rmdir "$CODEX_DIR" 2>/dev/null || true; fi
+  # The download cache this installer made (only when it is our checkout).
+  CACHE="$USER_HOME/.i-have-headache/src"
+  if is_checkout "$CACHE"; then rm -rf "$CACHE"; say "removed $CACHE"; fi
+  rmdir "$USER_HOME/.i-have-headache" 2>/dev/null || true
   say "i-have-headache uninstalled."; exit 0
 fi
 
@@ -206,7 +213,7 @@ fi
 if [ "$WANT_CODEX" -eq 1 ]; then write_block "$CONTRACT"; fi
 if [ "$WANT_CURSOR" -eq 1 ]; then
   mkdir -p "$(dirname -- "$RULE")"
-  { printf -- '---\ndescription: i-have-headache - concise mode, always on\nalwaysApply: true\n---\n\n'; rules; } > "$RULE"
+  { printf -- '---\ndescription: i-have-headache - concise mode, always on, no command needed\nalwaysApply: true\n---\n\n'; rules; } > "$RULE"
   say "wrote $RULE"
 fi
-say "Done. Concise mode is always on. Re-run to update; --uninstall to remove."
+say "Done. Always on - no command needed. Re-run to update; --uninstall to remove."

@@ -1,5 +1,5 @@
 {
-  "description": "i-have-headache SessionStart hook: concise mode is always on. Exec form (command + args): the shell form exits 126 on Claude Code 2.1.154 under Git Bash.",
+  "description": "i-have-headache hooks: concise mode is always on. SessionStart (no matcher: startup, resume, clear, compact) injects the rules; UserPromptSubmit re-asserts them in one line per prompt. Exec form (command + args): the shell form exits 126 on Claude Code 2.1.154 under Git Bash.",
   "hooks": {
     "SessionStart": [
       {
@@ -9,6 +9,19 @@
             "command": "sh",
             "args": [
               "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
+            ]
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh",
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/hooks/prompt-reminder.sh"
             ]
           }
         ]

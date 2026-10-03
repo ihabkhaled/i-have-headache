@@ -1,6 +1,6 @@
 # Memory
 
-*Last verified: 2026-09-29*
+*Last verified: 2026-10-03*
 
 ## 2026-09-29 — clean-code rules are flexible and scope-aware
 
@@ -50,6 +50,28 @@ proper refactors.
 
 This extends `skills/i-have-headache/SKILL.md`; it does not create a second
 skill, command, mode or configuration surface.
+
+## 2026-10-03 — "must always be followed", and versioned
+
+The maintainer said concise mode MUST be followed automatically, never by
+typing, and that every change bumps the version and is documented. Answer: a
+one-line UserPromptSubmit reminder (ADR-0009) and a version tool in the one
+skill's `scripts/` plus CI (ADR-0010). Do not add a command for either.
+
+Surprise: `--uninstall` left `~/.i-have-headache/src` (the `curl | sh` download
+cache) and the Claude marketplace entry behind. Fixed and tested; keep the test.
+
+Incident 2026-10-03: a polite contract was ignored (25 lines for "summarize and
+tell me what is wrong"); only shouting fixed it. So the contract is now loud,
+with a countable limit (5 short bullets), and tests pin both phrases. Never
+soften the headline back to polite wording.
+
+Ships as 1.4.0 (after the owner's 1.3.0 clean-code release). The 5-bullet cap
+and hard limits govern chat replies only; the clean-code rules govern code.
+The version tool also covers `.cursor-plugin/plugin.json`.
+
+Reverses when: the maintainer asks for the reminder to go, or a platform fires
+SessionStart on every turn.
 
 ## 2026-09-19 — always on, at the maintainer's request
 

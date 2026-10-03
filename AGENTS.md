@@ -74,7 +74,10 @@ skill, a `commands/` file or a Codex prompt** — each is a second entry. See
 | Path | Purpose |
 |---|---|
 | `skills/i-have-headache/SKILL.md` | The only copy of the text — the skill and the command |
-| `hooks/` | Claude SessionStart hook: prints the rules from the skill — always on |
+| `hooks/` | Claude hooks: SessionStart prints the rules from the skill, UserPromptSubmit adds a one-line reminder — always on |
+| `skills/i-have-headache/scripts/` | `headache_version.py`, version discipline; not a command |
+| `tests/`, `.github/workflows/ci.yml` | `python -m pytest tests -q`; CI runs it and the version check |
+| `CHANGELOG.md`, `docs/` | Release notes; the wiki and one record per change |
 | `install.sh`, `install.ps1` | One-line install for Claude Code, Codex and Cursor |
 | `.claude-plugin/plugin.json` | Claude Code plugin manifest |
 | `.claude-plugin/marketplace.json` | Makes the repo its own marketplace |
@@ -95,6 +98,11 @@ Every user-facing behavior change must bump the plugin version. Keep the version
 identical in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and
 `.cursor-plugin/plugin.json`. This right-sized clean-code release is `1.3.0`.
 Do not merge a future behavior change with stale or mismatched manifest versions.
+
+## Releasing
+
+A change to a shipped path bumps the version and the changelog, with the tool:
+[.ai/rules/version-discipline.md](.ai/rules/version-discipline.md).
 
 ## Knowledge
 
